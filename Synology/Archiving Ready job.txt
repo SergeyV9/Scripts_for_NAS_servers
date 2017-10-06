@@ -1,0 +1,6 @@
+cd /volume2/'Ready job'/
+
+export LANG=ru_RU.UTF-8
+find -maxdepth 1 -mindepth 1 -type d -mtime +30 -exec 7z a -mx5 -xr!*.ps -m0=lzma2 {}.7z  {} \; -exec rm -r {} \;
+
+find -maxdepth 1 -mindepth 1 -type f -name "*.7z" -exec mv {} /volume1/'Archive Ready job'/ \;

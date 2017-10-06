@@ -1,0 +1,14 @@
+DIRDATE=`/bin/date '+%Y_%m_%d'`
+mkdir /volume2/TransferBackup/'Bux backup'/Baza/"$DIRDATE"
+
+cd /volume2/TransferBackup/Baza/
+
+export LANG=ru_RU.UTF-8
+
+find -name "Внешний.mdb" -exec 7z a -mx5 -m0=lzma2 {}.7z  {} \;
+
+find -maxdepth 1 -mindepth 1 -type f -name "*.7z" -exec mv {} /volume2/TransferBackup/'Bux backup'/Baza/"$DIRDATE" \;
+
+cd /volume2/TransferBackup/'Bux backup'/Baza/
+
+find -type d -mtime +7 -exec rm -rf '{}' \;
